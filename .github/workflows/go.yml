@@ -1,0 +1,28 @@
+name: Go
+on: [push]
+jobs:
+
+  build:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Set up Go 1.13rc1
+      uses: actions/setup-go@v1
+      with:
+        go-version: 1.13rc1
+      id: go
+
+    - name: Check out code
+      uses: actions/checkout@v1
+      with:
+        path: ./go/src/github.com/lifenod/tokenbucket
+
+    - name: Link go path
+      run: ln -s /home/runner/work/tokenbucket/go /home/runner/go
+
+    - name: Go mod download
+      run: go mod download
+
+    - name: Test
+      run: go test -v ./...
