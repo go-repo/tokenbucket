@@ -26,9 +26,11 @@ func NewLimiter(rate int, burst int) *Limiter {
 	}
 }
 
+// This function is used for manual control sleep flow.
 func (l *Limiter) Allow(now time.Time) (isAllowed bool, sleep time.Duration) {
 	elapsed := now.Sub(l.last)
 
+	// "rate * elapsed.Seconds()" mean newly obtain tokens in the past elapsed time.
 	l.tokens = l.tokens + l.rate*elapsed.Seconds()
 	l.last = now
 
@@ -36,15 +38,18 @@ func (l *Limiter) Allow(now time.Time) (isAllowed bool, sleep time.Duration) {
 		l.tokens = l.burst
 	}
 
+	// Consume one token.
 	l.tokens = l.tokens - 1
 
 	if l.tokens < 0 {
+		// "-l.tokens / l.rate" mean how many seconds can obtain these tokens.
 		return false, time.Duration(-l.tokens / l.rate * float64(time.Second))
 	} else {
 		return true, 0
 	}
 }
 
+// Wait until consume a token.
 func (l *Limiter) Wait() {
 	isAllowed, sleep := l.Allow(time.Now())
 	if !isAllowed {
