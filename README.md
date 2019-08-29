@@ -45,7 +45,7 @@ Got output like the following:
 This function is used for manual control sleeping flow,
 for example, you need to force cancel when sleeping:
 
-```
+```go
 package main
 
 import (
