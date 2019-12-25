@@ -131,7 +131,7 @@ func TestLimiter_Allow(t *testing.T) {
 }
 
 func TestLimiter_Wait__Slept(t *testing.T) {
-	lim := NewLimiter(10, 1)
+	lim := NewLimiter(10, 1, 1)
 	isWaitDone := false
 
 	go func() {
@@ -146,7 +146,7 @@ func TestLimiter_Wait__Slept(t *testing.T) {
 }
 
 func TestLimiter_Wait__NoSleep(t *testing.T) {
-	lim := NewLimiter(40, 1)
+	lim := NewLimiter(40, 1, 1)
 	isWaitDone := false
 
 	go func() {

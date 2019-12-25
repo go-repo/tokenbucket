@@ -15,13 +15,14 @@ type Limiter struct {
 	last time.Time
 }
 
-// rate:  number of events per second.
-// burst: peak of events that can be consumed.
-func NewLimiter(rate int, burst int) *Limiter {
+// rate:          number of events per second.
+// burst:         peak number of events that can be consumed.
+// initialTokens: initial number of events that can be consumed.
+func NewLimiter(rate int, burst int, initialTokens int) *Limiter {
 	return &Limiter{
 		rate:   float64(rate),
 		burst:  float64(burst),
-		tokens: float64(burst),
+		tokens: float64(initialTokens),
 		last:   time.Now(),
 	}
 }

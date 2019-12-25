@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	lim := tokenbucket.NewLimiter(5, 5)
+	lim := tokenbucket.NewLimiter(5, 5, 5)
 
 	now := time.Now()
 	for i := 0; i < 10; i++ {
@@ -56,7 +56,7 @@ import (
 )
 
 func main() {
-	lim := tokenbucket.NewLimiter(5, 5)
+	lim := tokenbucket.NewLimiter(5, 5, 5)
 
 	cancelC := make(chan struct{})
 	go func() {
