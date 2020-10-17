@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/lifenod/assert"
-	"github.com/lifenod/assert/errorassert"
+	"github.com/go-repo/assert"
+	"github.com/go-repo/assert/errorassert"
 )
 
 func TestLimiter_Allow(t *testing.T) {

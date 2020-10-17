@@ -1,5 +1,5 @@
-module github.com/lifenod/tokenbucket
+module github.com/go-repo/tokenbucket
 
-go 1.13
+go 1.15
 
-require github.com/lifenod/assert v0.0.0-20190829030351-25a039a0cd5a
+require github.com/go-repo/assert v0.0.0-20201017155115-c793fb8a3a49
